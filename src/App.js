@@ -1,26 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import MarkDownPreviewer from "./components/MarkDownPreviewer";
 
 class App extends Component {
+  state = {
+    editorText:
+      "#### Headings: \n### SoundSpot \n ## SoundSpot \n# SoundSpot \n #### Hyperlink: \n[SoundSpot](https://sound-spot.herokuapp.com/) \n#### Code block: \n`\nlet soundSpot = true;\n`\n```\nlet soundSpot=true;\n```\n- SoundSpot\n- SoundSpot\n\n\n> SoundSpot\n\n![React Logo w/ Text](https://goo.gl/Umyytc)\n\n **SoundSpot**"
+  };
+
+  handleMarkdownPreviewerChangeInApp = (e) => {
+    this.setState({
+      editorText: e.target.value
+    });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <MarkDownPreviewer
+        editorText={this.state.editorText}
+        handleMarkdownPreviewerChangeInApp={
+          this.handleMarkdownPreviewerChangeInApp
+        }
+      />
     );
   }
 }
